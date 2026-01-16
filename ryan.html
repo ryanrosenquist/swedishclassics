@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1" /> <!-- Mobile adaptation -->
+    <title>Kokbok: Svenska klassiker</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+
+    <div class="title-group">
+    <h1 class="title-serif">Swedish Classics</h1>
+    <p class="subtitle">Easy dishes in under 30 minutes</p>
+    </div>
+
+    <!-- Lines in the header -->
+    <img src="images/linjer.svg" alt="" class="header-lines">
+
+    <!-- Hamburger menu -->
+    <button class="nav-toggle" aria-label="Open menu">☰</button>
+
+    <!-- Main menu -->
+<!-- Main menu -->
+<nav class="main-nav" id="main-nav">
+  <ul class="menu">
+    <li><a href="index.html">Home</a></li>
+
+    <li class="has-dropdown">
+      <a href="#" class="dropdown-toggle">Recipes</a>
+      <ul class="dropdown">
+        <li><a href="ryan.html">Shrimp Sandwich</a></li>
+        <li><a href="#">Recipe 2</a></li>
+        <li><a href="#">Recipe 3</a></li>
+        <li><a href="#">Recipe 4</a></li>
+      </ul>
+    </li>
+
+    <li><a href="about.html">About me</a></li>
+  </ul>
+</nav>
+
+  </div>
+</header>
+
+<main class="container">
+
+    <!-- Image section -->
+    <section class="recipe-images">
+        <img src="images/rakmacka1.jpg" alt="Bild 1">
+        <img src="images/rakmacka2.jpg" alt="Bild 2">
+    </section>
+
+    <!-- Divider line -->
+    <hr class="divider">
+
+    <!-- Text section -->
+    <section class="recipe-intro">
+        <div class="recipe-intro-center">
+            <center>The Swedish shrimp sandwich is a favorite - 
+            fresh, luxurious and perfect for both lunch and a light dinner. 
+            With peeled shrimp, boiled egg, mayonnaise and dill on a fluffy 
+            wheat bun you get a dish that is both beautiful and tastes fantastic. 
+            Often served with a lemon wedge and a cold drink on the side.<br><br>
+            <strong>Servings:</strong> 2 people | <strong>Time:</strong> Approx. 20 minutes</center>
+        </div>
+    </section>
+
+    <!-- Divider line -->
+    <hr class="divider">
+
+    <!-- Recipe section -->
+    <section class="recipe-content">
+
+        <div class="ingredients">
+            <h3>Ingredienser</h3>
+            <ul>
+                <li><strong>For the bread:</strong></li>
+                <li>2 slices wheat bun or other light bread</li>
+                <li>Butter (for the bread)</li>
+                <li><strong>Toppings:</strong></li>
+                <li>200 g peeled shrimp</li>
+                <li>2 hard-boiled eggs</li>
+                <li>1 dl mayonnaise</li>
+                <li>Some red leaf lettuce leaves</li>
+                <li>2 lemon slices</li>
+                <li>Cucumber slices</li>
+                <li>Tomato slices</li>
+                <li>Dill sprigs</li>
+            </ul>
+        </div>
+
+    <!-- Instructions -->
+        <div class="instructions">
+            <h3>Instructions</h3>
+            <ol>
+                <li><strong>Preparation:</strong> Start by boiling the eggs for about 8–9 minutes until 
+                    hard-boiled. Rinse them in cold water, peel and slice into thin, even slices. 
+                    Rinse the lettuce, cucumber and tomato thoroughly and let them dry on paper towels. 
+                    If the shrimp are freshly cooked, let them drain well.</li><br>
+
+                <li><strong>Make the base:</strong> Spread a thin layer of butter on the wheat bun — 
+                    it helps keep the bread moist and adds a mild, rounded flavor. Then place a couple of red 
+                    leaf lettuce leaves on top. The lettuce adds freshness and creates a small barrier 
+                    between the bread and the moist ingredients.</li><br>
+
+                <li><strong>Assemble the sandwich:</strong> Arrange the egg slices evenly over the lettuce. 
+                    Spoon or pipe the mayonnaise over the eggs and top with the peeled shrimp. 
+                    Be generous with the shrimp; they should cover the entire surface in a thick, juicy layer.</li><br>
+
+                <li><strong>Serving:</strong> Add cucumber and tomato slices. 
+                    Top with a sprig of dill and a lemon wedge on the side. 
+                    Optionally squeeze a little lemon over the shrimp and finish with a few 
+                    twists of freshly ground black pepper.</li>
+            </ol>
+        </div>
+
+    </section>
+
+</main>
+
+<footer>
+    © Ryan Rosenquist
+</footer>
+
+<!-- javascript starts  -->
+<script>
+    // Get the hamburger menu button
+    const toggle = document.querySelector('.nav-toggle'); 
+
+    // Get the main navigation menu
+    const nav = document.querySelector('.main-nav');     
+
+    // Reacts to button click
+    toggle.addEventListener('click', () => {             
+        
+        // Toggles visibility when the button is clicked
+        nav.classList.toggle('open');                   
+        
+        // Toggles the appearance of the button itself
+        toggle.classList.toggle('active');
+
+        // Switches icon between hamburger and X
+        if (toggle.classList.contains('active')) {
+            toggle.textContent = '✕';
+        } else {
+            toggle.textContent = '☰';
+        }
+    });
+</script>
+<!-- javascript ends -->
+
+</body>
+</html>

@@ -1,0 +1,648 @@
+@font-face {
+  font-family: "Source Serif Pro";
+  src: url("../fonts/SourceSerif4-VariableFont_opsz,wght.ttf") format("truetype");
+  font-weight: 200 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: system-ui, sans-serif;
+  background: #e3f0ff; /* Light background */
+  color: #062047;
+}
+
+/* Header, menu bar */
+header {
+  background-image:
+    linear-gradient(135deg, #2533b3, #325ab8),
+    url("../images/linjer.svg");
+  background-repeat: no-repeat, no-repeat;
+  background-position: left top, left bottom;
+  background-size: cover, 190px auto;
+
+  padding: 0.9rem 1rem 1.7rem; /* -20% shorter header */
+  color: white;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+  position: relative;
+  overflow: visible; /* Must be visible so the hamburger menu is not clipped */
+}
+
+/* Wrapper for title and menu */
+.header-inner {
+  max-width: 1100px;
+  margin: auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Title */
+.title-serif {
+  font-family: "Source Serif Pro", serif;
+  font-weight: 700;
+  font-size: 2.2rem;
+  letter-spacing: 0.5px;
+  color: #ffffff;
+}
+
+/* Group for main title and subtitle */
+.title-group {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.1;
+  position: relative;
+  z-index: 2;
+  transform: translateY(0.6rem);
+}
+
+/* Subtitle */
+.subtitle {
+  font-family: system-ui, sans-serif;
+  font-size: 1rem;
+  margin-top: 0.15rem;
+  opacity: 0.9;
+  letter-spacing: 0.2px;
+  font-weight: 400;
+  color: #ffffff;
+}
+
+/* Lines in the header */
+.header-lines {
+  position: absolute;
+  bottom: 0; /* always ends at the bottom of the header */
+  left: 0;
+  width: 190px;
+  height: auto;
+  opacity: 0.6; /* Fast transparency – same on all screens */
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* Adjustment for small windows of lines */
+@media (max-width: 700px) {
+  .header-lines {
+    left: -10px;
+    width: 170px;
+    /* No opacity here, please do not change */
+  }
+}
+
+/* Navigation (large window) */
+.main-nav {
+  position: relative;
+  z-index: 2;
+  display: block;
+}
+
+#main-nav {
+  display: block;
+}
+
+.main-nav ul {
+  list-style: none;
+  display: flex;
+  gap: 1.5rem;
+}
+
+/* Menu buttons (large window) */
+.main-nav a {
+  text-decoration: none;
+  background: #3e20c6;
+  background-color: #3e20c6; 
+  color: #ffffff;
+  padding: 0.65rem 1.4rem;
+  border-radius: 10px;
+  font-weight: 600;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.18);
+  transition: background 0.15s ease, transform 0.12s ease, box-shadow 0.15s ease;
+}
+
+.main-nav a:hover {
+  background: #2149a5;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.22);
+}
+
+/* Parent */
+#main-nav li.has-dropdown {
+  position: relative;
+  display: inline-block;
+  flex: 0 0 auto;
+}
+
+/* Dropdown menu background */
+#main-nav li.has-dropdown > ul.dropdown {
+  position: absolute;
+  top: calc(100% + 14px);
+  left: 50%;
+  transform: translateX(-50%);
+
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+
+  width: max-content;
+  min-width: 100%;
+  padding: 8px 14px;
+  margin: 0;
+
+  list-style: none;
+  background: #2533b3;
+  border-radius: 14px;
+  box-shadow: 0 12px 28px rgba(0,0,0,0.3);
+  z-index: 9999;
+
+  /* Visibility and delay */
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+
+  transition:
+    opacity 0.25s ease,
+    visibility 0s linear 0.25s;
+}
+
+/* Show dropdown on hover */
+#main-nav li.has-dropdown:hover > ul.dropdown,
+#main-nav li.has-dropdown:focus-within > ul.dropdown {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+
+  transition:
+    opacity 0.25s ease,
+    visibility 0s linear 0s;
+}
+
+/* Prevents gap from closing dropdown menu */
+#main-nav li.has-dropdown > ul.dropdown::before {
+  content: "";
+  position: absolute;
+  top: -14px;
+  left: 0;
+  width: 100%;
+  height: 14px;
+}
+
+/* List-items in the dropdown menu */
+#main-nav li.has-dropdown > ul.dropdown > li {
+  padding: 0;
+  margin: 0;
+}
+
+/* Same width on all buttons */
+#main-nav li.has-dropdown > ul.dropdown > li > a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  height: 42px;
+  width: 100%;
+  padding: 0 18px;
+  white-space: nowrap;
+
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1;
+
+  color: #ffffff;
+  text-decoration: none;
+  text-align: center;
+
+  border-radius: 10px;
+  transition: background 0.15s ease;
+}
+
+/* Hover effect on buttons */
+#main-nav li.has-dropdown > ul.dropdown > li > a:hover {
+  background: rgba(255,255,255,0.16);
+}
+
+/* Hamburger button */
+.nav-toggle {
+  display: none;
+  background: none;
+  border: none;
+  color: white;
+  font-size: 2rem;
+  cursor: pointer;
+}
+
+/* Content box */
+.container {
+  max-width: 1100px;
+  margin: 3rem auto;
+  background: white;
+  background-color: #ffffff;
+  padding: 2.5rem;
+  border-radius: 22px;
+  border: 3px solid #a7c7ff;
+  box-shadow: 0 10px 25px rgba(6,32,71,0.15);
+  background-image: linear-gradient(
+    180deg,
+    rgba(37,51,179,0.06),
+    rgba(255,255,255,0)
+  );
+}
+
+h2 {
+  color: #163a8c;
+  font-size: 1.9rem;
+  margin-bottom: 1rem;
+}
+
+p {
+  font-size: 1.15rem;
+  margin-bottom: 1.2rem;
+}
+
+/* Footer */
+footer {
+  text-align: center;
+  padding: 2rem;
+  color: #163a8c;
+  opacity: 0.85;
+}
+
+/* Cookbook layout */
+.recipe-images {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.2rem;
+}
+
+.recipe-images img {
+  width: 100%;
+  height: 280px;
+  object-fit: cover;
+  border-radius: 14px;
+}
+
+.divider {
+  border: none;
+  height: 1px;
+  background: #000000;
+  opacity: 0.15;
+  margin: 2rem 0;
+}
+
+.recipe-intro p {
+  font-size: 1.15rem;
+  line-height: 1.6;
+  max-width: 700px;
+}
+
+.recipe-content {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 2rem;
+}
+
+.recipe-content h3 {
+  margin-bottom: 0.6rem;
+  color: #163a8c;
+}
+
+.recipe-content ul,
+.recipe-content ol {
+  padding-left: 1.2rem;
+}
+
+@media (max-width: 700px) {
+  .recipe-images {
+    grid-template-columns: 1fr;
+  }
+
+  .recipe-images img {
+    height: 220px;
+  }
+
+  .recipe-content {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* About page */
+.about-layout {
+  display: grid;
+  grid-template-columns: 1fr 1px 2fr;
+  gap: 2rem;
+  align-items: start; /* Content starts from the top */
+}
+/* Image box in the about section */
+.about-image img {
+  width: 100%;
+  height: 280px;
+  object-fit: cover;
+  border-radius: 14px;
+  display: block;
+}
+/* Divider (line) between image and text */
+.about-divider {
+  border: none;
+  width: 1px;
+  height: 100%;
+  background: #000000;
+  opacity: 0.15;
+  margin: 0;
+  justify-self: center;
+}
+
+/* On small screens, the content stacks and the divider becomes horizontal */
+@media (max-width: 700px) {
+  .about-layout {
+    grid-template-columns: 1fr;
+    gap: 1.2rem;
+  }
+
+  .about-divider {
+    width: 100%;
+    height: 1px;
+    background: #000000;
+    opacity: 0.15;
+  }
+}
+
+/* Small window / hamburger menu */
+@media (max-width: 750px) {
+  .nav-toggle {
+    display: block;
+  }
+
+  .main-nav,
+  #main-nav {
+    display: none !important;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: #2533b3;
+    background-color: #2533b3;
+    padding: 1rem;
+    text-align: center;
+    box-shadow: 0 8px 15px rgba(0,0,0,0.25);
+    z-index: 999;
+  }
+
+  .main-nav.open,
+  #main-nav.open {
+    display: block !important;
+  }
+
+  .menu.open .dropdown {
+  position: static;
+  box-shadow: none;
+  border-radius: 0;
+  }
+
+  .main-nav ul {
+    flex-direction: column;
+    gap: 0.8rem;
+  }
+
+  .main-nav a {
+    display: block;
+    width: 100%;
+    padding: 1rem;
+    margin: 0;
+    text-align: left;
+    border-radius: 10px;
+    background: #203a9e;
+    background-color: #203a9e;
+    border: none;
+    box-shadow: none;
+    font-size: 1.1rem;
+    border-bottom: 1px solid rgba(255,255,255,0.2);
+    white-space: normal;
+  }
+
+  .main-nav a:hover {
+    background: #294cc2;
+    padding-left: 1.3rem;
+  }
+
+  .container {
+    margin: 2rem 1rem;
+    padding: 1.8rem;
+    border-radius: 18px;
+  }
+}
+
+/* Video player */
+.video-medieteknik {
+  max-width: 700px;
+  width: 100%;
+  margin: 2rem auto;
+  border-radius: 22px; /* Gives the video player rounded corners to match the page design */
+  overflow: hidden;
+  box-shadow: 0 10px 25px rgba(6,32,71,0.15);
+}
+
+.video-medieteknik video {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 22px;
+}
+
+.video-title {
+  text-align: center;
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: #163a8c;
+  margin: 2rem 0 1rem;
+}
+
+/* Dark mode & dropdown  */
+@media (prefers-color-scheme: dark) {
+  body {
+    background: #0b1220;
+    color: #e6eefc;
+  }
+
+  .container {
+    background: #0f1a2e;
+    background-color: #0f1a2e;
+    border-color: rgba(167,199,255,0.25);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.45);
+  }
+
+  h2, .video-title {
+    color: #a9c7ff;
+  }
+
+  p {
+    color: #d7e3ff;
+  }
+
+  footer {
+    color: #a9c7ff;
+    opacity: 0.9;
+  }
+
+  .divider {
+    background: #ffffff;
+    opacity: 0.12;
+  }
+
+  header {
+    background-image:
+      linear-gradient(180deg, #0a1430, #0e1f45),
+      url("../images/linjer.svg"); 
+    background-repeat: no-repeat, no-repeat;
+    background-position: left top, left bottom;
+    background-size: cover, 190px auto;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.45);
+  }
+
+  /* Divider in dark mode in About section, should now be visible */
+@media (prefers-color-scheme: dark) {
+  .about-divider {
+    background: #ffffff;
+    opacity: 0.12;
+  }
+
+/* Parent /ryan */
+#main-nav li.has-dropdown {
+  position: relative;
+  display: inline-block;
+  flex: 0 0 auto;
+}
+
+/* Dropdown in large window */
+#main-nav li.has-dropdown > ul.dropdown {
+  display: none;
+  position: absolute;
+  top: calc(100% + 14px);
+  left: 50%;
+  transform: translateX(-50%);
+
+  flex-direction: column;
+  gap: 6px;
+
+  padding: 12px;
+  margin: 0;
+  list-style: none;
+
+  /* Dropdown box (behind the buttons) */
+  background: #101c40;
+  background-color: #101c40;
+
+  border-radius: 16px; /* Large window, rounded */
+  box-shadow: 0 18px 42px rgba(0, 0, 0, 0.6);
+  z-index: 99999;
+}
+
+/* Show dropdown /ryan */
+#main-nav li.has-dropdown:hover > ul.dropdown,
+#main-nav li.has-dropdown:focus-within > ul.dropdown {
+  display: flex;
+}
+
+/* Dropdown buttons */
+#main-nav li.has-dropdown > ul.dropdown > li {
+  margin: 0;
+  padding: 0;
+}
+
+#main-nav li.has-dropdown > ul.dropdown > li > a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  height: 42px;
+  width: 100%;
+  padding: 0 22px;
+
+  font-size: 16px;
+  font-weight: 600;
+  white-space: nowrap;
+  text-decoration: none;
+
+  /* Same as main menu */
+  background: #13265a;
+  background-color: #13265a;
+  color: #e2e9ff;
+
+  border-radius: 10px;
+  transition: background 0.15s ease;
+}
+
+/* Hover dropdown */
+#main-nav li.has-dropdown > ul.dropdown > li > a:hover,
+#main-nav li.has-dropdown > ul.dropdown > li > a:focus-visible {
+  background: #2f4fa3;
+  background-color: #2f4fa3;
+}
+
+/* Small screen, square corners in menu */
+@media (max-width: 768px) {
+  #main-nav li.has-dropdown > ul.dropdown {
+    top: 100%; 
+    border-radius: 0;
+
+    /* Same dropdown box as large window */
+    background: #101c40;
+    background-color: #101c40;
+  }
+
+  #main-nav li.has-dropdown > ul.dropdown > li > a {
+    border-radius: 0;
+  }
+}
+/* Dark mode */
+@media (prefers-color-scheme: dark) {
+  #main-nav li.has-dropdown > ul.dropdown {
+    background: #0f1838;
+    background-color: #0f1838;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.7);
+  }
+}
+
+/* Dropdown should match the main menu*/
+.main-nav a {
+  background: #13265a;
+  background-color: #13265a;
+  color: #e2e9ff;
+}
+
+.main-nav a:hover {
+  background: #2f4fa3;
+  background-color: #2f4fa3;
+}
+
+/* Menu in small window */
+@media (max-width: 1100px) {
+  .main-nav,
+  #main-nav {
+    background: rgba(16, 28, 64, 0.96);
+    background-color: rgba(16, 28, 64, 0.96); 
+  }
+
+  .main-nav a {
+    background: #13265a;
+    background-color: #13265a;
+    color: #e2e9ff;
+    border-bottom: 1px solid rgba(255,255,255,0.14);
+  }
+
+  .main-nav a:hover {
+    background: #2f4fa3;
+    background-color: #2f4fa3;
+  }
+    .main-nav a {
+    border-radius: 10px; /* Small window, rounded buttons in dark mode */
+  }
+
+  /* Also applies to dropdown buttons */
+#main-nav li.has-dropdown > ul.dropdown > li > a {
+  border-radius: 10px;
+}
+}

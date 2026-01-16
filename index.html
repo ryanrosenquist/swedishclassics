@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1" /> <!-- Mobile adaptation -->
+    <title>Cookbook: Swedish Classics</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+
+    <div class="title-group">
+      <h1 class="title-serif">Swedish Classics</h1>
+      <p class="subtitle">Simple dishes in under 30 minutes</p>
+    </div>
+
+    <!-- Lines in the header -->
+    <img src="images/linjer.svg" alt="" class="header-lines">
+
+    <!-- Hamburger menu -->
+    <button class="nav-toggle" aria-label="Öppna meny">☰</button>
+
+<!-- Main menu -->
+<nav class="main-nav" id="main-nav">
+  <ul class="menu">
+    <li><a href="index.html">Home</a></li>
+
+    <li class="has-dropdown">
+      <a href="#" class="dropdown-toggle">Recipes</a>
+      <ul class="dropdown">
+        <li><a href="ryan.html">Shrimp Sandwich</a></li>
+        <li><a href="#">Recipe 2</a></li>
+        <li><a href="#">Recipe 3</a></li>
+        <li><a href="#">Recipe 4</a></li>
+      </ul>
+    </li>
+
+    <li><a href="about.html">About me</a></li>
+  </ul>
+</nav>
+
+  </div>
+</header>
+
+<main>
+    <div class="container">
+        <h2>Welcome to your new favorite digital cookbook!</h2>
+        <p>
+            Here you will find easy-to-make recipes for Swedish classics like
+            tasty shrimp sandwiches and flavorful falukorv - <br>all classic dishes ready in under 30 minutes. 
+            Let yourself be inspired, <br>have fun in the kitchen, and discover that cooking can be both quick and easy.
+        </p>
+
+        <p>
+            <strong>Click</strong> on one of the recipes in the menu to view it!
+        </p>
+        <hr class="divider">
+        <h3 class="video-title">
+            A fun short film about Swedish classics:
+        </h3>
+
+        <div class="video-medieteknik">
+          <video controls preload="none" playsinline>
+            <source src="video/svenskaklassiker.mp4" type="video/mp4">
+          </video>
+        </div>
+
+    </div>
+</main>
+
+<footer>
+    © Ryan Rosenquist
+</footer>
+
+<!-- javascript starts -->
+<script>
+    // Get hamburger menu
+    const toggle = document.querySelector('.nav-toggle'); 
+
+    // Get the navigation itself
+    const nav = document.querySelector('.main-nav');     
+
+    // Respond to button click
+    toggle.addEventListener('click', () => {             
+        
+        // Switch navigation open/closed
+        nav.classList.toggle('open');                   
+        
+        // Switch appearance of the button itself
+        toggle.classList.toggle('active');
+
+        // Switch icon between hamburger and X
+        if (toggle.classList.contains('active')) {
+            toggle.textContent = '✕';
+        } else {
+            toggle.textContent = '☰';
+        }
+    });
+</script>
+<!-- javascript ends -->
+
+</body>
+</html>
